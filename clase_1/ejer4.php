@@ -1,12 +1,14 @@
 
 <?php
-
-var $x=1;
-
-while(x<1000){
-	$x++;
-}
-echo $x . "<br>";
-
-
+	$n = 1;
+	$calculo = "".($n - 1);
+	$suma = 0;
+	while($n + $suma < 1000)
+	{
+		$calculo = $calculo." + $n ";
+		$suma += $n;
+		$n++;
+	}
+	$calculo = $calculo." = $suma";
+	echo $calculo;
 ?>
