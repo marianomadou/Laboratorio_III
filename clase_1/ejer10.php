@@ -7,25 +7,40 @@ Luego imprimir (utilizando la estructura for) cada uno en una línea distinta (r
 */
 
 
-echo "Generando los datos del array...<br /><br />";
-$nros_a_generar = 10;
-$numeros = NULL;   // el array donde se almacena los números
-$comimpares = 0;
-$numeros_clasificados = NULL;
+$i = 1;     // contar los números generados
+$n = 10;   // cuantos impares se deben generar
+$impar = 1; // el numero impar generado
+$miArray=array();
 
-echo "Los n&uacute;meros del array...<br />";
-for ($i = 0; $i < $nros_a_generar; $i++ ) {
-	$numeros[$i] = mt_rand(1,100);
-	if ( ($numeros[$i] % 2) != 0) {  // es impar
-		$numeros_clasificados[$comimpares++] = $numeros[$i];
-	}
 
-	echo $comimpares[$i]. " ";
+while ( $i <= $n){
+	array_push($miArray,$impar);
+	$i = $i + 1;
+	$impar = $impar + 2;
 }
-echo "<br/><br />";
 
+echo "<br>Recorriendo el array cargado con numeros impares con la estructura FOR <br>";
+for($i=0;$i<10;$i++)
+	{
+		echo $miArray[$i] . "<br>";
+	}
+echo "<br>Recorriendo el array cargado con numeros impares con la estructura FOREACH <br>";
+
+foreach ($miArray as $v) {
+    echo $v . "<br>";
+}
+
+
+echo "<br>Recorriendo el array cargado con numeros impares con la estructura while <br>";
+$contador=0;
+
+while ( $contador < count($miArray)){
+	echo $miArray[$contador] . "<br>";
+	$contador++;
+}
 
 
 ?>
+
 
 
