@@ -1,86 +1,79 @@
 
 
 <?php
+$num=rand(20,60);
+$num=23;
+echo $num."<br>";
 
-
-$num="23";
-$primero;
-$segundo;
-
-if ($num[0]==2)
-{
-	$primero="veint";
-}elseif ($num[0]==3) {
-	$primero="treinta";
-}elseif ($num[0]==4) {
-	$primero="cuarenta";
-}elseif ($num[0]==5) {
-	$primero="cincuenta";
-}elseif ($num[0]==6) {
-	$primero="sesenta";
-}
-
-
-
-if ($num[1]==0)
-{
-	if ($num[0]==2){
-		$segundo="e";	
+	switch ($num)
+		{
+			case '20':
+				echo "veinte";
+				break;
+			case '30':
+				echo "treinta";
+				break;
+			case '40':
+				echo "cuarenta";
+				break;
+			case '50':
+				echo "cincuenta";
+				break;
+			case '60':
+				echo "sesenta";
+				break;
+		}
+		
+	if($num>20 && $num<30)
+		{
+			echo "veinti";
+			$num-=20;
+		}
+	elseif ($num>30 && $num<40)
+		{
+			echo "treinta y ";
+			$num-=30;
+		}
+	elseif ($num>40 && $num<50)
+		{
+			echo "cuarenta y ";
+			$num-=40;
+		}
+	elseif ($num>50 && $num<60)
+		{
+			echo "cincuenta y ";
+			$num-=50;
+		}
+switch ($num)
+	{
+		case '1':
+			echo "uno";
+			break;
+		case '2':
+			echo "dos";
+			break;
+		case '3':
+			echo "tres";
+			break;
+		case '4':
+			echo "cuatro";
+			break;
+		case '5':
+			echo "cinco";
+			break;
+		case '6':
+			echo "seis";
+			break;
+		case '7':
+			echo "siete";
+			break;
+		case '8':
+			echo "ocho";
+			break;
+		case '9':
+			echo "nueve";
+			break;
 	}
-
-	$segundo="e";
-}
-elseif ($num[1]==1) {
-	if ($num[0]==2){
-		$segundo="iuno";	
-	}
-	$segundo=" y uno ";
-}elseif ($num[1]==2) {
-	if ($num[0]===2){
-		$segundo="idos";	
-	}
-	$segundo=" y dos ";
-}elseif ($num[1]==3) {
-	if ($num[0]==2){
-		$segundo="itres";	
-	}
-	$segundo=" y tres ";
-}elseif ($num[1]==4) {
-	if ($num[0]==2){
-		$segundo="icuatro";	
-	}
-	$segundo=" y cuatro ";
-}elseif ($num[1]==5) {
-	if ($num[0]==2){
-		$segundo="icinco";	
-	}
-	$segundo=" y cinco ";
-}elseif ($num[1]==6) {
-	if ($num[0]==2){
-		$segundo="iseis";	
-	}
-	$segundo=" y seis ";
-}elseif ($num[1]==7) {
-	if ($num[0]==2){
-		$segundo="isiete";	
-	}
-	$segundo=" y siete ";
-}elseif ($num[1]==8) {
-	if ($num[0]==2){
-		$segundo="iocho";	
-	}
-	$segundo=" y ocho ";
-}elseif ($num[1]==9) {
-	if ($num[0]==2){
-		$segundo="inueve";	
-	}
-	$segundo=" y nueve";
-}
-
-
-
-echo $primero . $segundo;
-
 ?>
 
 
