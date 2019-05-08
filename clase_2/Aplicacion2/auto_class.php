@@ -33,10 +33,12 @@ class Auto{
 	
 	//Crear el método de instancia “Equals” que permita comparar dos objetos de tipo “Auto”. Sólo devolverá TRUE si ambos “Autos” son de la misma marca.
 	public function Equals($auto1){
-		if($auto1->_marca == $this->_marca){
-			return TRUE;	
-		}else{
-			return FALSE;
+		if(!is_null($auto1)){
+			if($auto1->_marca == $this->_marca){
+				return TRUE;	
+			}else{
+				return FALSE;
+			}
 		}
 	}
 	
