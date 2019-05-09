@@ -1,5 +1,6 @@
 <?php
 class Vuelo{
+	
 //Atributos privados: _fecha (DateTime), _empresa (string) _precio (double), _listaDePasajeros (array de tipo Pasajero), _cantMaxima (int; con su getter). Tanto _listaDePasajero como _cantMaxima sólo se inicializarán en el constructor.
 	
 	private $_fecha;
@@ -21,14 +22,13 @@ public function __construct($company,$price,$maximumQuantity=0){
 //Agregar un método getter, que devuelva en una cadena de caracteres toda la información de un vuelo: fecha, empresa, precio, cantidad máxima de pasajeros, y toda la información de todos los pasajeros.
 
 public function GetVuelo(){
-	$retorno = 	"Fecha: ".$this->_fecha->format('Y-m-d').", 
-				Empresa: $this->_empresa,
-				Precio: $this->_precio, 
-				Cant.Maxima: $this->_cantMaxima, 
-				Pasajeros:
+	$retorno = 	"Fecha: ".$this->_fecha->format('Y-m-d')." ||
+				Empresa: $this->_empresa ||
+				Precio: $this->_precio ||
+				Cantidad máxima de pasajeros: $this->_cantMaxima ||
+				Listado de pasajeros:
 	            <br/>";
-	foreach($this->_listaDePasajeros as $pasajero)
-	{        
+	foreach($this->_listaDePasajeros as $pasajero){        
 		$retorno = $retorno.$pasajero->GetInfoPasajero()."</br>";
 	}
 	return $retorno;
@@ -40,10 +40,9 @@ public function AgregarPasajero($nuevoPasajero){
 	if(count($this->_listaDePasajeros) < $this->_cantMaxima){
 		$siExiste = false;
 		
-		foreach($this->_listaDePasajeros as $pasajero)
-		{
-			if($nuevoPasajero->Equals($pasajero))
-			{
+		foreach($this->_listaDePasajeros as $pasajero){
+			
+			if($nuevoPasajero->Equals($pasajero)){
 				$siExiste = true;
 				break;
 			}
@@ -64,9 +63,40 @@ public static function MostrarVuelo($unVuelo){
 
 //Crear el método de clase “Add” para que permita sumar dos vuelos. El valor devuelto deberá ser de tipo numérico, y representará el valor recaudado por los vuelos. Tener en cuenta que si un pasajero es Plus, se le hará un descuento del 20% en el precio del vuelo.
 
+public static function Add($unVuelo, $otroVuelo){
+	return self::CalculaPrecioTotalVuelo($unVuelo) + self::CalculaPrecioTotalVuelo($otroVuelo);
+}
+
+private static function CalculaPrecioTotalVuelo($vuelo){
+	$precioTotal = 0;
+	$precio = $vuelo->_precio;
+	$precioConDescuento = $precio - $precio * 0.20;
+	
+	foreach($vuelo->_listaDePasajeros as $pasajero){
+		
+		if($pasajero->__get("_esPlus")){//__get() sobrecarga que se utiliza para consultar datos a partir de propiedades inaccesibles.
+			$precioTotal += $precioConDescuento;
+		}else{
+			$precioTotal += $precio;
+		}
+	}
+	return $precioTotal;
+}
+
 
 
 //Crear el método de clase “Remove”, que permite quitar un pasajero de un vuelo, siempre y cuando el pasajero esté en dicho vuelo, caso contrario, informarlo. El método retornará un objeto de tipo Vuelo.
+
+public static function Remove($vuelo,$pasajero){
+	foreach($vuelo->_listaDePasajeros as $key => $pasajer){
+		
+		if($pasajer->Equals($pasajero)){
+			unset($vuelo->_listaDePasajeros[$key]);
+			break;
+		}
+	}
+	return $vuelo;
+}
 
 	
 }

@@ -9,7 +9,7 @@ private $_dni;
 private $_esPlus;
 
 //Crear un constructor capaz de recibir los cuatro parámetros.
-public function __construct($name="sin dato", $surname="sin dato", $document="00000000", $plus=FALSE){
+public function __construct($name, $surname, $document, $plus){
 	$this->_nombre=$name;
 	$this->_apellido=$surname;
 	$this->_dni=$document;
@@ -33,8 +33,13 @@ public function GetInfoPasajero(){
 }
 
 //Agregar un método de clase llamado MostrarPasajero que mostrará los atributos en la página.
-public static function MostrarPasajero(){
+public static function MostrarPasajero($pasajero){
 	echo $pasajero->GetInfoPasajero();
+}
+
+//para poder acceder a una propiedad inaccesible
+public function __get($property){
+	return $this->$property;
 }
 
 }
