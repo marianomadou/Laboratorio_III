@@ -1,0 +1,3 @@
+﻿HZC699,pasado mañana,1300,
+AAA123,pasado mañana,1200,
+BBB456,pasado mañana,1100,CCC789,pasado mañana,1000,
