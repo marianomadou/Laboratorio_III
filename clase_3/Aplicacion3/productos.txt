@@ -1,0 +1,3 @@
+1001 pepsi 60 50 502
+1002 coca-cola 20 80 501
+1003 galletitas 20 80 502
