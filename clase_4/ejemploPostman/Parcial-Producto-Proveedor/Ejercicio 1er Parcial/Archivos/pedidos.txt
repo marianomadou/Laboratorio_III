@@ -1,0 +1,3 @@
+{"producto":"paty","cantidad":"100","proveedor":"1"}
+{"producto":"paty","cantidad":"100","proveedor":"1"}
+{"producto":"pochoclo","cantidad":"555","proveedor":"2"}

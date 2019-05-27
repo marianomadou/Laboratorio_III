@@ -1,0 +1,2 @@
+{"id":"1","nombre":"martin","email":"martinarrua@gmail.com","foto":"1_martin.png"}
+{"id":"2","nombre":"Jorge","email":"jorgearrua@gmail.com","foto":"2_jorge.jpg"}
