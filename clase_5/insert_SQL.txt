@@ -1,0 +1,30 @@
+INSERT INTO `alumnos`(`nombre`, `legajo`, `idLocalidad`) VALUES ('Mariano', '100','1'), ('Mercedes', '101','1'), ('Octavio', '102','2'), ('Lucila', '103','2'), ('Victor', '104','3'), ('Leandro', '105','3');
+INSERT INTO `materia`(`descripcion`) VALUES ('estadistica'), ('programacion'), ('laboratorio');
+INSERT INTO `localidad`(`descripcion`) VALUES ('Quilmes'), ('Lanus'), ('CABA');
+
+UPDATE `alumnos` SET `nombre`='jose' WHERE 3 ///
+UPDATE `alumnos` SET `nombre`='jose' WHERE id='3'
+
+SELECT COUNT(id) FROM `alumno-materia` WHERE 1 
+SELECT COUNT(id) AS "cantidad de examenes" FROM `alumno-materia` 
+SELECT COUNT(id) AS "cantidad de examenes" FROM `alumno-materia` WHERE nota>=6 
+SELECT SUM(nota) FROM `alumno-materia`
+SELECT a.nombre, am.nota FROM `alumno-materia`AS am, alumnos AS a WHERE 1 //trae un producto cartesiano
+SELECT a.nombre, am.nota FROM `alumno-materia`AS am, alumnos AS a WHERE a.id = am.IdAlumno
+SELECT a.nombre, am.nota, m.descripcion FROM `alumno-materia`AS am, alumnos AS a, materia AS m WHERE a.id = am.IdAlumno AND m.id=am.idMateria
+SELECT a.nombre, am.nota, m.descripcion FROM `alumno-materia`AS am, alumnos AS a, materia AS m WHERE a.id = am.IdAlumno AND m.id=am.idMateria AND a.nombre LIKE 'p%'
+SELECT a.id, am.nota, m.descripcion FROM `alumno-materia`AS am, alumnos AS a, materia AS m WHERE a.id = am.IdAlumno AND m.id=am.idMateria 
+SELECT DISTINCT a.id FROM `alumno-materia`AS am, alumnos AS a, materia AS m WHERE a.id = am.IdAlumno AND m.id=am.idMateria ORDER BY id
+
+SELECT DISTINCT a.id FROM `alumno-materia`AS am, alumnos AS a, materia AS m WHERE a.id = am.IdAlumno AND m.id=am.idMateria ORDER BY id
+SELECT nombre, id FROM alumnos WHERE id NOT IN(SELECT DISTINCT a.id FROM `alumno-materia`AS am, alumnos AS a, materia AS m WHERE a.id = am.IdAlumno AND m.id=am.idMateria ORDER BY id)
+
+
+https://www.w3schools.com/sql/sql_join_inner.asp
+https://www.ecodeup.com/como-crear-un-procedimiento-almacenado-en-mysql-y-como-llamarlo-desde-java/
+https://www.php.net/manual/es/datetime.gettimestamp.php
+https://www.mocky.io/
+https://www.guru99.com/delete-and-update.html
+https://www.w3schools.com/sql/sql_where.asp
+
+
