@@ -5,9 +5,10 @@ if(isset($_POST['bebida']) && isset($_POST['precio']) && isset($_POST['tipo']) &
 	$tipo = $_POST['tipo'];
 	$cantidad = $_POST['cantidad'];
 	$imagen = $_FILES['imagen'];
+	
 	if($tipo == "gaseosa" || $tipo == "alcoholica"){
 	
-	if($bebida == "cocacola" || $bebida == "fanta" || $bebida == "cerveza"){
+	if($bebida == "coca-cola" || $bebida == "fanta" || $bebida == "cerveza"){
 		
 		$producto = new Producto(1, $bebida, $precio, $tipo, $cantidad);
 		if($producto->Guardar($RUTA_PRODUCTOS)){
@@ -17,7 +18,7 @@ if(isset($_POST['bebida']) && isset($_POST['precio']) && isset($_POST['tipo']) &
 				echo "Exito.";
 			}else{
 				
-				$pizza->BorrarProducto($RUTA_PRODUCTOS);
+				$producto->BorrarProducto($RUTA_PRODUCTOS);
 				echo "Fallo al intentar borrar.";
 			}
 		}
@@ -27,7 +28,7 @@ if(isset($_POST['bebida']) && isset($_POST['precio']) && isset($_POST['tipo']) &
 		}
 	}
 	else
-		echo 'Error! cargue "bebida" como "cocacola", "fanta" o "cerveza".';
+		echo 'Error! cargue "bebida" como "coca-cola", "fanta" o "cerveza".';
 	}
 	else
 	echo 'Error! cargue "tipo" como "gaseosa" o "alcoholica".';

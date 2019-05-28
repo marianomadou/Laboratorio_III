@@ -1,10 +1,10 @@
 <?php
-require './clases/Producto.php';
-require './clases/Cliente.php';
+require_once 'clases/Producto.php';
+require_once 'clases/Cliente.php';
 if(isset($_REQUEST['caso']))
 {
     $RUTA_PRODUCTOS = "./archivos/Producto.txt";
-    $RUTA_PIZZAS_BORRADAS = "./archivos/PizzaBorradas.txt";
+    $RUTA_PIZZAS_BORRADAS = "./archivos/ProductosBorrados.txt";
     $RUTA_CLIENTES = "./archivos/Cliente.txt";
     $RUTA_CARPETA_IMAGENES = "./imagenes/";
     $RUTA_CARPETA_IMAGENES_BACKUP = "./backUpFotos/";
@@ -13,13 +13,13 @@ if(isset($_REQUEST['caso']))
     $caso .= "-".$verboHttp;
     switch ($caso)
     {
-        case '​productocargar-POST':
+		case '​cargar-POST':
             include "Funciones/ProductoCargar.php";
             break;
         case 'productoconsultar-GET':
             include "Funciones/ProductoConsultar.php";
             break;
-        case 'altaventa-POST':
+        case 'venta-POST':
             include "Funciones/AltaVenta.php";
             break;
         case 'listadodeimagenes-GET':
@@ -32,7 +32,7 @@ if(isset($_REQUEST['caso']))
             include "Funciones/BorrarItem.php";
             break;
         default:
-            echo 'Error "HTTP" o "caso" mal ingresado.';
+            echo 'Error "HTTP" o "caso" mal ingresado.' .$caso;
             break;
     }
 }

@@ -16,11 +16,6 @@ function __construct($id, $bebida, $precio, $tipo, $cantidad){
 	$this->cantidad = $cantidad;
 }
 
-public function DevolverJson(){
-	
-	return json_encode($this, JSON_UNESCAPED_UNICODE);
-}
-    
 public function Guardar($ruta){
 	
 	$productos = self::Cargar($ruta);
@@ -60,10 +55,10 @@ public static function Cargar($ruta){
 		$productos = array();
 		while(!feof($archivo)){
 			
-			$linea = fgets($archivo);
-			if($linea != ""){
+			$renglon = fgets($archivo);
+			if($renglon != ""){
 				
-				$objeto = json_decode($linea);
+				$objeto = json_decode($renglon);
 				$producto = new Producto($objeto->id, $objeto->bebida, $objeto->precio, $objeto->tipo, $objeto->cantidad);
 				array_push($productos, $producto);
 			}
@@ -120,9 +115,10 @@ public static function ExisteProductoPorBebidaYTipo($ruta, $bebida, $tipo){
 		
 		foreach ($productos as $produc){
 			
-			if(strtolower($bebida) == strtolower($produc->bebida) &&
-				strtolower($tipo) == strtolower($produc->tipo))
+			if(strtolower($bebida) == strtolower($produc->bebida) && strtolower($tipo) == strtolower($produc->tipo)){
+				
 				return true;
+			}
 		}
 	}
 	return false;
@@ -320,5 +316,11 @@ public static function RetornarIdStock($ruta, $bebida, $tipo, $cantidad){
 	}
 	return null;
 }
+
+public function DevolverJson(){
+	
+	return json_encode($this, JSON_UNESCAPED_UNICODE);
+}
+
 }
 ?>

@@ -7,10 +7,10 @@ if(isset($_GET['mostrar'])){
 		
         switch ($mostrar){
 			
-            case 'cargadas':
+            case 'cargados':
                 echo Producto::ProductoToTable($productos, $RUTA_CARPETA_IMAGENES);
                 break;
-            case 'borradas':
+            case 'borrados':
                 echo Producto::ProductoToTable($productos, $RUTA_CARPETA_IMAGENES_BACKUP);
                 break;
             default:

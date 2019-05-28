@@ -8,7 +8,7 @@ if(isset($_POST['nombre']) && isset($_POST['bebida']) && isset($_POST['tipo']) &
     $imagen = $_FILES['imagen'];
     if($tipo == "gaseosa" || $tipo == "alcoholica"){
 		
-        if($bebida == "cocacola" || $bebida == "fanta" || $bebida == "cerveza"){
+        if($bebida == "coca-cola" || $bebida == "fanta" || $bebida == "cerveza"){
 			
             $idStock = Producto::RetornarIdStock($RUTA_PRODUCTOS, $bebida, $tipo, $cantidad);
             if($idStock != null){
@@ -19,7 +19,7 @@ if(isset($_POST['nombre']) && isset($_POST['bebida']) && isset($_POST['tipo']) &
                     if($miProducto->Vender($RUTA_PRODUCTOS, $cantidad))
                     {
                         $venta = new Cliente(1, $nombre, $bebida, $tipo, $cantidad);
-                        if($venta->Guardar($RUTA_VENTAS))
+                        if($venta->Guardar($RUTA_CLIENTES))
                         {
                             if($venta->CargarImagen($imagen, $RUTA_CARPETA_IMAGENES))
                                 echo "Exito.";

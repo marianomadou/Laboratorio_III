@@ -57,10 +57,10 @@ public static function Cargar($ruta){
 		while(!feof($archivo)){
 			
 			$renglon = fgets($archivo);
-			if($linea != ""){
+			if($renglon != ""){
 				
 				$objeto = json_decode($renglon);
-				$venta = new Venta($objeto->id, $objeto->nombre, $objeto->bebida, $objeto->tipo, $objeto->cantidad);
+				$venta = new Cliente($objeto->id, $objeto->nombre, $objeto->bebida, $objeto->tipo, $objeto->cantidad);
 				array_push($ventas, $venta);
 			}
 		}
@@ -77,7 +77,7 @@ public static function GuardarTodo($ventas, $ruta){
 	
 	if(file_exists($ruta)){
 		
-		foreach ($ventas as $key => $producto){
+		foreach ($ventas as $key => $produc){
 			
 			if($key == 0){
 				
