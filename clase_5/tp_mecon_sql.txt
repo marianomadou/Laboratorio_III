@@ -1,0 +1,33 @@
+CREATE TABLE `UTN`.`proveedores` ( `numero` INT NOT NULL , `nombre` VARCHAR(30) NOT NULL , `domicilio` VARCHAR(50) NOT NULL , `localidad` VARCHAR(80) NOT NULL , PRIMARY KEY (`numero`(20))) ENGINE = MyISAM;
+CREATE TABLE `utn`.`productos` ( `pNumero` INT NOT NULL , `pNombre` VARCHAR(30) NOT NULL , `precio` FLOAT NOT NULL , `tamaño` VARCHAR(20) NOT NULL , PRIMARY KEY (`pNumero`)) ENGINE = MyISAM;
+CREATE TABLE `utn`.`envios` ( `numero` INT NOT NULL , `pNumero` INT NOT NULL , `cantidad` INT NOT NULL , PRIMARY KEY (`numero`, `pNumero`)) ENGINE = MyISAM;
+INSERT INTO `proveedores`(`numero`,`nombre`, `domicilio`, `localidad`) VALUES ('100', 'Perez', 'Perón 876', 'Quilmes'), ('101', 'Gimenez', 'Mitre 750', 'Avellaneda'), ('102', 'Aguirre', 'Boedo 634', 'Bernal');
+INSERT INTO `productos`(`pNumero`,`pNombre`, `precio`, `tamaño`) VALUES ('1', 'Caramelos', '1.5', 'Chico'), ('2', 'Cigarrillos', '45.89', 'Mediano'), ('3', 'Gaseosa', '15.80', 'Grande');
+INSERT INTO `envios`(`numero`,`pNumero`, `cantidad`) VALUES ('100', '1', '500'), ('100', '2', '1500'), ('100', '3', '100'), ('101', '2', '55'), ('101', '3', '225'), ('102', '1', '600'), ('102', '3', '300');
+
+
+
+1. Obtener los detalles completos de todos los productos, ordenados alfabéticamente.
+SELECT * FROM productos a ORDER BY a.pNombre
+
+2. Obtener los detalles completos de todos los proveedores de ‘Quilmes’.
+SELECT * FROM proveedores a WHERE a.localidad='Quilmes' 
+
+3. Obtener todos los envíos en los cuales la cantidad este entre 200 y 300 inclusive.
+SELECT * FROM envios a WHERE a.cantidad BETWEEN 200 AND 300 
+
+4. Obtener la cantidad total de todos los productos enviados.
+SELECT SUM(cantidad) AS 'cantidad total de productos enviados' FROM envios a
+
+5. Mostrar los primeros 3 números de productos que se han enviado.
+SELECT TOP 3 pNumero from envios //no me funciona https://www.w3schools.com/sql/sql_top.asp
+SELECT * FROM envios a ORDER BY a.pNumero LIMIT 3
+
+6. Mostrar los nombres de proveedores y los nombres de los productos enviados.
+SELECT proveedor.nombre, producto.pNombre FROM proveedores proveedor, productos producto, envios e
+WHERE proveedor.numero = e.numero AND producto.pNumero = e.pNumero;
+
+7. Indicar el monto (cantidad * precio) de todos los envíos. 
+SELECT provee.*, produc.*, envi.cantidad, (cantidad * precio) AS 'Monto de envios' FROM proveedores provee, productos produc, envios envi WHERE provee.numero = envi.numero AND produc.pNumero = envi.pNumero;
+
+8. Obtener la cantidad total del producto 1 enviado por el proveedor 102.
