@@ -40,21 +40,22 @@ SELECT produc.pNumero FROM proveedores proveed, productos produc, envios envi WH
 SELECT proveedores.domicilio, proveedores.localidad FROM proveedores WHERE nombre LIKE '%i%';
 
 11.Agregar el producto numero 4, llamado ‘Chocolate’, de tamaño chico y con un precio de 25,35.
-
+INSERT INTO productos (pNumero, pNombre, precio, tamaño) VALUES ('4', 'Chocolate', '25.35', 'Chico');
 
 12.Insertar un nuevo proveedor (únicamente con los campos obligatorios).
-
+INSERT INTO proveedores (numero) VALUES ('103'); #1364 - Field 'nombre' doesn't have a default value?? //tuve que cambiar los predeterminados de la tabla prooveedores para que funcione
 
 13.Insertar un nuevo proveedor (107), donde el nombre y la localidad son ‘Rosales’ y ‘La Plata’.
-
+INSERT INTO proveedores (numero, nombre, localidad) VALUES (107, 'Rosales', 'La Plata'); //tuve que cambiar los predeterminados de la tabla prooveedores para que funcione
 
 14.Cambiar los precios de los productos de tamaño ‘grande’ a 97,50.
-
+UPDATE productos SET precio = 97.50 WHERE tamaño = 'grande';
 
 15.Cambiar el tamaño de ‘Chico’ a ‘Mediano’ de todos los productos cuyas cantidades sean mayores a 300 inclusive.
-
+UPDATE productos SET tamaño = 'Mediano' WHERE tamaño = 'Chico' AND pNumero IN (SELECT DISTINCT produc.pNumero FROM productos produc, envios envi WHERE produc.pNumero = envi.pNumero AND envi.cantidad >= 300 AND produc.tamaño = 'Chico');
 
 16.Eliminar el producto número 1.
+DELETE FROM productos WHERE pNumero = 1 
 
-
-17.Eliminar a todos los proveedores que no han enviado productos.
+17.Eliminar a todos los proveedores que no han enviado productos.// no me funciono
+DELETE FROM proveedores WHERE numero NOT IN(SELECT DISTINCT provee.numero FROM proveedores provee, productos produc, envios envi WHERE provee.numero= envi.numero AND produc.pNumero = envi.pNumero);
