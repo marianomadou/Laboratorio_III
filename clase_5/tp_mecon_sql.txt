@@ -31,3 +31,30 @@ WHERE proveedor.numero = e.numero AND producto.pNumero = e.pNumero;
 SELECT provee.*, produc.*, envi.cantidad, (cantidad * precio) AS 'Monto de envios' FROM proveedores provee, productos produc, envios envi WHERE provee.numero = envi.numero AND produc.pNumero = envi.pNumero;
 
 8. Obtener la cantidad total del producto 1 enviado por el proveedor 102.
+SELECT SUM(cantidad) 'Cantidad total' FROM envios env WHERE env.pNumero = 1 AND env.numero = 102
+
+9. Obtener todos los números de los productos suministrados por algún proveedor de ‘Avellaneda’.
+SELECT produc.pNumero FROM proveedores proveed, productos produc, envios envi WHERE produc.pNumero = envi.pNumero AND proveed.numero = envi.numero AND proveed.localidad = 'Avellaneda';
+
+10.Obtener los domicilios y localidades de los proveedores cuyos nombres contengan la letra ‘I’.
+SELECT proveedores.domicilio, proveedores.localidad FROM proveedores WHERE nombre LIKE '%i%';
+
+11.Agregar el producto numero 4, llamado ‘Chocolate’, de tamaño chico y con un precio de 25,35.
+
+
+12.Insertar un nuevo proveedor (únicamente con los campos obligatorios).
+
+
+13.Insertar un nuevo proveedor (107), donde el nombre y la localidad son ‘Rosales’ y ‘La Plata’.
+
+
+14.Cambiar los precios de los productos de tamaño ‘grande’ a 97,50.
+
+
+15.Cambiar el tamaño de ‘Chico’ a ‘Mediano’ de todos los productos cuyas cantidades sean mayores a 300 inclusive.
+
+
+16.Eliminar el producto número 1.
+
+
+17.Eliminar a todos los proveedores que no han enviado productos.
