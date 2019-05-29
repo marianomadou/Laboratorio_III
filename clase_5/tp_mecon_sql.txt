@@ -58,4 +58,5 @@ UPDATE productos SET tamaño = 'Mediano' WHERE tamaño = 'Chico' AND pNumero IN (S
 DELETE FROM productos WHERE pNumero = 1 
 
 17.Eliminar a todos los proveedores que no han enviado productos.// no me funciono
-DELETE FROM proveedores WHERE numero NOT IN(SELECT DISTINCT provee.numero FROM proveedores provee, productos produc, envios envi WHERE provee.numero= envi.numero AND produc.pNumero = envi.pNumero);
+SELECT * FROM proveedores WHERE NOT EXISTS (envios.numero=proveedores.numero);//para ver que vamos a borrar
+DELETE FROM proveedores WHERE NOT EXISTS(SELECT 1 FROM envios WHERE envios.numero=proveedores.numero);
