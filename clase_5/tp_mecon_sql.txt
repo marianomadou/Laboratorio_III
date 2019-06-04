@@ -1,62 +1,69 @@
 CREATE TABLE `UTN`.`proveedores` ( `numero` INT NOT NULL , `nombre` VARCHAR(30) NOT NULL , `domicilio` VARCHAR(50) NOT NULL , `localidad` VARCHAR(80) NOT NULL , PRIMARY KEY (`numero`(20))) ENGINE = MyISAM;
-CREATE TABLE `utn`.`productos` ( `pNumero` INT NOT NULL , `pNombre` VARCHAR(30) NOT NULL , `precio` FLOAT NOT NULL , `tamaño` VARCHAR(20) NOT NULL , PRIMARY KEY (`pNumero`)) ENGINE = MyISAM;
+CREATE TABLE `utn`.`productos` ( `pNumero` INT NOT NULL , `pNombre` VARCHAR(30) NOT NULL , `precio` FLOAT NOT NULL , `tamaÃ±o` VARCHAR(20) NOT NULL , PRIMARY KEY (`pNumero`)) ENGINE = MyISAM;
 CREATE TABLE `utn`.`envios` ( `numero` INT NOT NULL , `pNumero` INT NOT NULL , `cantidad` INT NOT NULL , PRIMARY KEY (`numero`, `pNumero`)) ENGINE = MyISAM;
-INSERT INTO `proveedores`(`numero`,`nombre`, `domicilio`, `localidad`) VALUES ('100', 'Perez', 'Perón 876', 'Quilmes'), ('101', 'Gimenez', 'Mitre 750', 'Avellaneda'), ('102', 'Aguirre', 'Boedo 634', 'Bernal');
-INSERT INTO `productos`(`pNumero`,`pNombre`, `precio`, `tamaño`) VALUES ('1', 'Caramelos', '1.5', 'Chico'), ('2', 'Cigarrillos', '45.89', 'Mediano'), ('3', 'Gaseosa', '15.80', 'Grande');
+INSERT INTO `proveedores`(`numero`,`nombre`, `domicilio`, `localidad`) VALUES ('100', 'Perez', 'PerÃ³n 876', 'Quilmes'), ('101', 'Gimenez', 'Mitre 750', 'Avellaneda'), ('102', 'Aguirre', 'Boedo 634', 'Bernal');
+INSERT INTO `productos`(`pNumero`,`pNombre`, `precio`, `tamaÃ±o`) VALUES ('1', 'Caramelos', '1.5', 'Chico'), ('2', 'Cigarrillos', '45.89', 'Mediano'), ('3', 'Gaseosa', '15.80', 'Grande');
 INSERT INTO `envios`(`numero`,`pNumero`, `cantidad`) VALUES ('100', '1', '500'), ('100', '2', '1500'), ('100', '3', '100'), ('101', '2', '55'), ('101', '3', '225'), ('102', '1', '600'), ('102', '3', '300');
 
 
 
-1. Obtener los detalles completos de todos los productos, ordenados alfabéticamente.
+1. Obtener los detalles completos de todos los productos, ordenados alfabÃ©ticamente.
+
 SELECT * FROM productos a ORDER BY a.pNombre
 
-2. Obtener los detalles completos de todos los proveedores de ‘Quilmes’.
+2. Obtener los detalles completos de todos los proveedores de â€˜Quilmesâ€™.
+
 SELECT * FROM proveedores a WHERE a.localidad='Quilmes' 
 
-3. Obtener todos los envíos en los cuales la cantidad este entre 200 y 300 inclusive.
+3. Obtener todos los envÃ­os en los cuales la cantidad este entre 200 y 300 inclusive.
+
 SELECT * FROM envios a WHERE a.cantidad BETWEEN 200 AND 300 
 
 4. Obtener la cantidad total de todos los productos enviados.
 SELECT SUM(cantidad) AS 'cantidad total de productos enviados' FROM envios a
 
-5. Mostrar los primeros 3 números de productos que se han enviado.
+5. Mostrar los primeros 3 nÃºmeros de productos que se han enviado.
+
 SELECT TOP 3 pNumero from envios //no me funciona https://www.w3schools.com/sql/sql_top.asp
 SELECT * FROM envios a ORDER BY a.pNumero LIMIT 3
 
-6. Mostrar los nombres de proveedores y los nombres de los productos enviados.
+6. Mostrar los nombres de proveedores y los nombres de los productos enviados.
+
 SELECT proveedor.nombre, producto.pNombre FROM proveedores proveedor, productos producto, envios e
 WHERE proveedor.numero = e.numero AND producto.pNumero = e.pNumero;
 
-7. Indicar el monto (cantidad * precio) de todos los envíos. 
+7. Indicar el monto (cantidad * precio) de todos los envÃ­os. 
 SELECT provee.*, produc.*, envi.cantidad, (cantidad * precio) AS 'Monto de envios' FROM proveedores provee, productos produc, envios envi WHERE provee.numero = envi.numero AND produc.pNumero = envi.pNumero;
 
-8. Obtener la cantidad total del producto 1 enviado por el proveedor 102.
+8. Obtener la cantidad total del producto 1 enviado por el proveedor 102.
+
 SELECT SUM(cantidad) 'Cantidad total' FROM envios env WHERE env.pNumero = 1 AND env.numero = 102
 
-9. Obtener todos los números de los productos suministrados por algún proveedor de ‘Avellaneda’.
+9. Obtener todos los nÃºmeros de los productos suministrados por algÃºn proveedor de â€˜Avellanedaâ€™.
 SELECT produc.pNumero FROM proveedores proveed, productos produc, envios envi WHERE produc.pNumero = envi.pNumero AND proveed.numero = envi.numero AND proveed.localidad = 'Avellaneda';
 
-10.Obtener los domicilios y localidades de los proveedores cuyos nombres contengan la letra ‘I’.
+10.Obtener los domicilios y localidades de los proveedores cuyos nombres contengan la letra â€˜Iâ€™.
 SELECT proveedores.domicilio, proveedores.localidad FROM proveedores WHERE nombre LIKE '%i%';
 
-11.Agregar el producto numero 4, llamado ‘Chocolate’, de tamaño chico y con un precio de 25,35.
-INSERT INTO productos (pNumero, pNombre, precio, tamaño) VALUES ('4', 'Chocolate', '25.35', 'Chico');
+11.Agregar el producto numero 4, llamado â€˜Chocolateâ€™, de tamaÃ±o chico y con un precio de 25,35.
+INSERT INTO productos (pNumero, pNombre, precio, tamaÃ±o) VALUES ('4', 'Chocolate', '25.35', 'Chico');
 
-12.Insertar un nuevo proveedor (únicamente con los campos obligatorios).
+12.Insertar un nuevo proveedor (Ãºnicamente con los campos obligatorios).
 INSERT INTO proveedores (numero) VALUES ('103'); #1364 - Field 'nombre' doesn't have a default value?? //tuve que cambiar los predeterminados de la tabla prooveedores para que funcione
 
-13.Insertar un nuevo proveedor (107), donde el nombre y la localidad son ‘Rosales’ y ‘La Plata’.
+13.Insertar un nuevo proveedor (107), donde el nombre y la localidad son â€˜Rosalesâ€™ y â€˜La Plataâ€™.
 INSERT INTO proveedores (numero, nombre, localidad) VALUES (107, 'Rosales', 'La Plata'); //tuve que cambiar los predeterminados de la tabla prooveedores para que funcione
 
-14.Cambiar los precios de los productos de tamaño ‘grande’ a 97,50.
-UPDATE productos SET precio = 97.50 WHERE tamaño = 'grande';
+14.Cambiar los precios de los productos de tamaÃ±o â€˜grandeâ€™ a 97,50.
+UPDATE productos SET precio = 97.50 WHERE tamaÃ±o = 'grande';
 
-15.Cambiar el tamaño de ‘Chico’ a ‘Mediano’ de todos los productos cuyas cantidades sean mayores a 300 inclusive.
-UPDATE productos SET tamaño = 'Mediano' WHERE tamaño = 'Chico' AND pNumero IN (SELECT DISTINCT produc.pNumero FROM productos produc, envios envi WHERE produc.pNumero = envi.pNumero AND envi.cantidad >= 300 AND produc.tamaño = 'Chico');
+15.Cambiar el tamaÃ±o de â€˜Chicoâ€™ a â€˜Medianoâ€™ de todos los productos cuyas cantidades sean mayores a 300 inclusive.
+UPDATE productos SET tamaÃ±o = 'Mediano' WHERE tamaÃ±o = 'Chico' AND pNumero IN (SELECT DISTINCT produc.pNumero FROM productos produc, envios envi WHERE produc.pNumero = envi.pNumero AND envi.cantidad >= 300 AND produc.tamaÃ±o = 'Chico');
 
-16.Eliminar el producto número 1.
+16.Eliminar el producto nÃºmero 1.
 DELETE FROM productos WHERE pNumero = 1 
 
-17.Eliminar a todos los proveedores que no han enviado productos.// no me funciono
-SELECT * FROM proveedores WHERE NOT EXISTS (envios.numero=proveedores.numero);//para ver que vamos a borrar
-DELETE FROM proveedores WHERE NOT EXISTS(SELECT 1 FROM envios WHERE envios.numero=proveedores.numero);
+17.Eliminar a todos los proveedores que no han enviado productos.
+SELECT * FROM proveedores WHERE NOT EXISTS (SELECT 1 FROM envios WHERE envios.numero=proveedores.numero)//para ver que vamos a borrar
+DELETE FROM proveedores WHERE NOT EXISTS(SELECT 1 FROM envios WHERE envios.numero=proveedores.numero);
+
