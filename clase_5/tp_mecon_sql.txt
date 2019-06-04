@@ -29,8 +29,8 @@ SELECT * FROM envios a ORDER BY a.pNumero LIMIT 3
 
 6. Mostrar los nombres de proveedores y los nombres de los productos enviados.
 
-SELECT proveedor.nombre, producto.pNombre FROM proveedores proveedor, productos producto, envios e
-WHERE proveedor.numero = e.numero AND producto.pNumero = e.pNumero;
+SELECT pro.pNombre,prov.Nombre FROM productos AS pro INNER JOIN envios as en ON pro.pNumero = en.pnumero
+INNER JOIN proveedores AS prov ON en.numero = prov.numero; // usando el inner join https://www.w3schools.com/sql/sql_join.asp
 
 7. Indicar el monto (cantidad * precio) de todos los envíos. 
 SELECT provee.*, produc.*, envi.cantidad, (cantidad * precio) AS 'Monto de envios' FROM proveedores provee, productos produc, envios envi WHERE provee.numero = envi.numero AND produc.pNumero = envi.pNumero;
