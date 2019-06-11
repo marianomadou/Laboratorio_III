@@ -1,0 +1,13 @@
+{"id":1,"email":"marianomadou@gmail.com","sabor":"jamon","tipo":"piedra","cantidad":5}
+{"id":2,"email":"juan@gmail.com","sabor":"jamon","tipo":"molde","cantidad":2}
+{"id":3,"email":"carlos@gmail.com","sabor":"jamon","tipo":"piedra","cantidad":1}
+{"id":4,"email":"laura@gmail.com","sabor":"jamon","tipo":"molde","cantidad":3}
+{"id":5,"email":"octavio@gmail.com","sabor":"jamon","tipo":"piedra","cantidad":5}
+{"id":6,"email":"lulops@mecon.gob.ar","sabor":"muzza","tipo":"molde","cantidad":15}
+{"id":7,"email":"nicolas@mecon.gob.ar","sabor":"muzza","tipo":"piedra","cantidad":4}
+{"id":8,"email":"marianomadou@mecon.gob.ar","sabor":"muzza","tipo":"molde","cantidad":3}
+{"id":9,"email":"silvia@mecon.gob.ar","sabor":"especial","tipo":"piedra","cantidad":1}
+{"id":10,"email":"paulita@mecon.gob.ar","sabor":"especial","tipo":"molde","cantidad":4}
+{"id":11,"email":"mercedeswarrior@mecon.gob.ar","sabor":"especial","tipo":"molde","cantidad":14}
+{"id":12,"email":"octavio@gmail.com","sabor":"jamon","tipo":"piedra","cantidad":"1"}
+{"id":13,"email":"mechaguerreiro@gmail.com","sabor":"muzza","tipo":"piedra","cantidad":"5"}
