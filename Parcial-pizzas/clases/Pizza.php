@@ -481,6 +481,33 @@ public static function ModificarPizzaPorId($ruta, $id, $nuevaPizza)
     return self::GuardarTodo($pizzas, $ruta);
 }
 
+public static function ModificarPizzaPorSaborYTipo($ruta, $sabor, $tipo, $nuevaPizza)
+{
+    $pizzas = self::Cargar($ruta);
+    
+    if(!$pizzas || $pizzas == "NADA")
+    {
+        echo "<br/>No hay pizzas cargadas.";
+        die;
+    }
+    if(!self::TraerPizzasPorTipoySabor2($ruta, $sabor, $tipo))
+    {
+        echo "<br/>No exite una pizza con id ".$sabor. " y ese ".$tipo.".";
+        die;
+    }
+    foreach ($pizzas as $pizza)
+    {
+        if($pizza->sabor == $nuevaPizza->sabor&&$pizza->tipo == $nuevaPizza->tipo)
+        {
+            $pizza->precio = $nuevaPizza->precio;
+            $pizza->cantidad+=$nuevaPizza->cantidad;
+            break;
+        }
+    }
+    return self::GuardarTodo($pizzas, $ruta);
+}
+
+
 public static function RetornarIdStock($ruta, $sabor, $tipo, $cantidad)
 {
     $pizzas = self::Cargar($ruta);

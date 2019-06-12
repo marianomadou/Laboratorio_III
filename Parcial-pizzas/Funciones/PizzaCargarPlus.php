@@ -10,14 +10,15 @@ if(isset($_POST['sabor']) && isset($_POST['precio']) && isset($_POST['tipo']) &&
         if($sabor == "muzza" || $sabor == "jamon" || $sabor == "especial")
         {
             $pizza = new Pizza(1, $sabor, $precio, $tipo, $cantidad);
-            if(Pizza::ExistePizzaPorSaborYTipo($RUTA_PIZZAS, $sabor, $tipo)==true){
+            if(Pizza::ExistePizzaPorSaborYTipo($RUTA_PIZZAS, $sabor, $tipo)){
                 
-                echo"la pizza ya existe";
-                $newPizza=Pizza::TraerPizzasPorTipoySabor($RUTA_PIZZAS, $sabor, $tipo);
-                var_dump($newPizza);
-                $newPizza->precio=$pizza->precio;
-                $newPizza->cantidad+=$pizza->cantidad;
-                $pizza->Guardar($RUTA_PIZZAS);
+                echo"existe pizza con ese sabor y tipo";
+                if(Pizza::ModificarPizzaPorSaborYTipo($RUTA_PIZZAS, $sabor, $tipo, $pizza))
+                {
+                    echo"<br/>Exito.";
+                }else{
+                    echo"<br/>Falló al intentar modificar la pizza.";
+                }
 
             }else{
                 $pizza->Guardar($RUTA_PIZZAS);
