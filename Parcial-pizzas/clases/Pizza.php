@@ -138,7 +138,21 @@ public static function ExistePizzaPorSabor($ruta, $sabor)
 public static function PizzasATabla( $rutaCarpetaImagenes)
 {
     $archivos  = scandir($rutaCarpetaImagenes);
-    
+
+    $backUpInfo = array();
+
+    foreach ($archivos as $key => $archivo){
+
+        if($key >= 2){
+            
+            array_push($backUpInfo, $archivo);
+        }
+
+    }
+
+    var_dump($backUpInfo);
+
+
     $texto = "<table class='table table-hover'";
     $texto .= "<thead class='thead-dark'>";
     $texto .= "<tr>";
@@ -148,22 +162,20 @@ public static function PizzasATabla( $rutaCarpetaImagenes)
     $texto .= "<tbody>";
     foreach ($archivos as $archivo)
     {
+        if(!file_exists($archivo)){
         $texto .= "<tr>";
         $texto .= "<td><img src='".$rutaCarpetaImagenes.$archivo."' height='120' width='120' /></td>";
         $texto .= "</tr>";
+        }
     }
     $texto .= "</tbody>";
     $texto .= "</table>";
     return "<div align=\"center\"> " . $texto . "</div>";
-    
 }
 
 public static function PizzasATablaBackup($rutaCarpetaImagenes)
 {
     $archivos  = scandir($rutaCarpetaImagenes);
-    unset($archivos[0]);
-    unset($archivos[1]);
-
     $texto = "<table class='table table-hover'";
     $texto .= "<thead class='thead-dark'>";
     $texto .= "<tr>";
@@ -173,9 +185,11 @@ public static function PizzasATablaBackup($rutaCarpetaImagenes)
     $texto .= "<tbody>";
     foreach ($archivos as $archivo)
     {
+        if(!file_exists($archivo)){
         $texto .= "<tr>";
         $texto .= "<td><img src='".$rutaCarpetaImagenes.$archivo."' height='120' width='120' /></td>";
         $texto .= "</tr>";
+        }
     }
     $texto .= "</tbody>";
     $texto .= "</table>";
